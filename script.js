@@ -42,7 +42,7 @@ $(function() {
 
     $checkBox.on('change', getUserId);
 
-    $table.children().append('<td class="remove-icon"><button type="button" class="btn btn-danger btn-sm">X</button></td>');
+    $table.children().append('<td class="remove-icon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></button></td>');
 
     const $removeIcon = $('.remove-icon');
 
