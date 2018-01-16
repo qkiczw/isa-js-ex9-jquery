@@ -19,6 +19,7 @@ $(function() {
             <td>${user.lastName}</td>
             <td>${user.age}</td>
             <td>${user.city}</td>
+            <td class="remove-icon"><button type="button" class="btn btn-danger btn-sm">X</button></td>
         </tr>
         `)
         })
@@ -37,4 +38,12 @@ $(function() {
     $checkBox.on('change', getUserId);
 
 
-});
+    const $removeIcon = $('.remove-icon');
+
+    const $removeUser = function () {
+        $(this).parent().remove();
+    };
+
+    $removeIcon.on('click', $removeUser)
+
+ });
