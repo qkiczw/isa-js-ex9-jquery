@@ -51,6 +51,8 @@ $(function() {
 
     $table.children().addClass('table-row');
 
+    const $tableRow = $('.table-row');
 
+    $tableRow.children().addClass('table-cell');
 
  });
