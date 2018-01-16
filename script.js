@@ -19,13 +19,15 @@ $(function() {
             <td>${user.lastName}</td>
             <td>${user.age}</td>
             <td>${user.city}</td>
-            <td class="remove-icon"><button type="button" class="btn btn-danger btn-sm">X</button></td>
+            
         </tr>
         `)
         })
     };
 
     $table.append(getRowsWithUsers());
+
+    $table.children().addClass('table-row');
 
     const $checkBox = $('.check-box');
 
@@ -37,6 +39,7 @@ $(function() {
 
     $checkBox.on('change', getUserId);
 
+    $table.children().append('<td class="remove-icon"><button type="button" class="btn btn-danger btn-sm">X</button></td>');
 
     const $removeIcon = $('.remove-icon');
 
@@ -44,6 +47,10 @@ $(function() {
         $(this).parent().remove();
     };
 
-    $removeIcon.on('click', $removeUser)
+    $removeIcon.on('click', $removeUser);
+
+    $table.children().addClass('table-row');
+
+
 
  });
