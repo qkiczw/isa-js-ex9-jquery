@@ -13,6 +13,7 @@ $(function() {
         return users.map(user => {
             return $(`
         <tr>
+            <td><input class="check-box" type="checkbox" data-id=${user.id}></td>
             <td>${user.id}</td>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
@@ -30,8 +31,6 @@ $(function() {
     const $tableRow = $('.table-row');
 
     $tableRow.children().addClass('table-cell');
-
-    $tableRow.prepend(`<td><input class="check-box" type="checkbox" data-id=${users.id}></td>`);
 
     const $checkBox = $('.check-box');
 
