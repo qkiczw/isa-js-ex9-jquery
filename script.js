@@ -35,7 +35,7 @@ $(function() {
     const $checkBox = $('.check-box');
 
     const getUserId = function () {
-        if($checkBox.prop('checked')) {
+        if($(this).prop('checked')) {
             console.log('User ID: ', $(this).data('id'));
         }
     };
