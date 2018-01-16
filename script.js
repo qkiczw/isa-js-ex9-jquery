@@ -13,7 +13,6 @@ $(function() {
         return users.map(user => {
             return $(`
         <tr>
-            <td><input class="check-box" type="checkbox" data-id="${user.id}"></td>
             <td>${user.id}</td>
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
@@ -27,6 +26,12 @@ $(function() {
     $table.append(getRowsWithUsers());
 
     $table.children().addClass('table-row');
+
+    const $tableRow = $('.table-row');
+
+    $tableRow.children().addClass('table-cell');
+
+    $tableRow.prepend(`<td><input class="check-box" type="checkbox" data-id=${users.id}></td>`);
 
     const $checkBox = $('.check-box');
 
@@ -48,23 +53,13 @@ $(function() {
 
     $removeIcon.on('click', $removeUser);
 
-    $table.children().addClass('table-row');
-
-    const $tableRow = $('.table-row');
-
-    $tableRow.children().addClass('table-cell');
-
     const $Highlight = function () {
-        $(this).addClass('bg-success');
-        console.log('dupa i tyle');
-    }
-    const $removeHighlight = function () {
-        $(this).removeClass('bg-success');
+        $(this).toggleClass('bg-success');
     }
 
     $tableRow.on({
         mouseenter: $Highlight,
-        mouseleave: $removeHighlight
+        mouseleave: $Highlight
     });
 
 
