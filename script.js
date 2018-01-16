@@ -19,7 +19,6 @@ $(function() {
             <td>${user.lastName}</td>
             <td>${user.age}</td>
             <td>${user.city}</td>
-            
         </tr>
         `)
         })
@@ -54,5 +53,19 @@ $(function() {
     const $tableRow = $('.table-row');
 
     $tableRow.children().addClass('table-cell');
+
+    const $Highlight = function () {
+        $(this).addClass('bg-success');
+        console.log('dupa i tyle');
+    }
+    const $removeHighlight = function () {
+        $(this).removeClass('bg-success');
+    }
+
+    $tableRow.on({
+        mouseenter: $Highlight,
+        mouseleave: $removeHighlight
+    });
+
 
  });
