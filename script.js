@@ -19,6 +19,7 @@
             <td>${user.lastName}</td>
             <td>${user.age}</td>
             <td>${user.city}</td>
+            <td class="remove-icon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></button></td>
         </tr>
         `)
         })
@@ -42,8 +43,6 @@
 
     $checkBox.on('change', getUserId);
 
-    $table.children().append('<td class="remove-icon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></button></td>');
-
     const $removeIcon = $('.remove-icon');
 
     const $removeUser = function () {
@@ -65,10 +64,6 @@
     const $userForm = $(`
         <form class="col-sm-12 col-md-5 pl-5 pr-5 pt-2 pb-3">
         <div class="form-group">
-            <label for="form-id">id</label>
-            <input type="text" class="form-control" id="form-id" placeholder=" Wpisz Id">
-        </div>
-        <div class="form-group">
             <label for="form-first-name">Imię</label>
             <input type="text" class="form-control" id="form-first-name" placeholder="Wpisz imię">
         </div>
@@ -82,7 +77,13 @@
         </div>
         <div class="form-group">
             <label for="form-city">Miasto</label>
-            <input type="text" class="form-control" id="form-city" placeholder="Wpisz miasto">
+            <select class="form-control" id="form-city">
+                  <option>Czarna Woda</option>
+                  <option>Gdańsk</option>
+                  <option>Gdynia</option>
+                  <option>Sopot</option>
+                  <option>California</option>
+            </select>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="check-age">
@@ -92,19 +93,17 @@
         </form>`);
 
     $userForm.prependTo('body');
-    const $formId= $('#form-id');
     const $formFirstName = $('#form-first-name');
     const $formLastName = $('#form-last-name');
     const $formAge = $('#form-age');
     const $formCity = $('#form-city');
     const $addUserBtn = $('#add-user-btn');
 
-    const $newUser = {};
-
-
     function getNewUser() {
         event.preventDefault();
         users.push({firstName: $formFirstName.val(), lastName: $formLastName.val(), age: $formAge.val(), city: $formCity.val(), id: users.length + 1})
+        $table.html(getRowsWithUsers());
+
     }
 
 
