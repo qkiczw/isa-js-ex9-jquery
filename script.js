@@ -1,17 +1,15 @@
-// $(function() {
+const users = [
+    {firstName: 'Tomasz', lastName: 'Doe', age: 23, city: 'London', id: 1},
+    {firstName: 'Monika', lastName: 'Brosman', age: 35, city: 'Sosnowiec', id: 2},
+    {firstName: 'Witek', lastName: 'Pitt', age: 40, city: 'Chicago', id: 3},
+    {firstName: 'Kasia', lastName: 'Belucci', age: 15, city: 'Bruksela', id: 4}
+];
 
-    const users = [
-        {firstName: 'Tomasz', lastName: 'Doe', age: 23, city: 'London', id: 1},
-        {firstName: 'Monika', lastName: 'Brosman', age: 35, city: 'Sosnowiec', id: 2},
-        {firstName: 'Witek', lastName: 'Pitt', age: 40, city: 'Chicago', id: 3},
-        {firstName: 'Kasia', lastName: 'Belucci', age: 15, city: 'Bruksela', id: 4}
-    ];
+const $table = $('<table class="table table-dark">').appendTo('body');
 
-    const $table = $('<table class="table table-dark">').appendTo('body');
-
-    const getRowsWithUsers = () => {
-        return users.map(user => {
-            return $(`
+const getRowsWithUsers = () => {
+    return users.map(user => {
+        return $(`
         <tr>
             <td><input class="check-box" type="checkbox" data-id=${user.id}></td>
             <td>${user.id}</td>
@@ -22,46 +20,45 @@
             <td class="remove-icon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></button></td>
         </tr>
         `)
-        })
-    };
+    })
+};
 
-    $table.append(getRowsWithUsers());
+$table.append(getRowsWithUsers());
 
-    $table.children().addClass('table-row');
+$table.children().addClass('table-row');
 
-    const $tableRow = $('.table-row');
+const $tableRow = $('.table-row');
 
-    $tableRow.children().addClass('table-cell');
+$tableRow.children().addClass('table-cell');
 
-    const $checkBox = $('.check-box');
+const $checkBox = $('.check-box');
 
-    const getUserId = function () {
-        if($(this).prop('checked')) {
-            console.log('User ID: ', $(this).data('id'));
-        }
-    };
+const getUserId = function () {
+    if ($(this).prop('checked')) {
+        console.log('User ID: ', $(this).data('id'));
+    }
+};
 
-    $checkBox.on('change', getUserId);
+$checkBox.on('change', getUserId);
 
-    const $removeIcon = $('.remove-icon');
+const $removeIcon = $('.remove-icon');
 
-    const $removeUser = function () {
-        $(this).parent().remove();
-    };
+const $removeUser = function () {
+    $(this).parent().remove();
+};
 
-    $removeIcon.on('click', $removeUser);
+$removeIcon.on('click', $removeUser);
 
-    const $Highlight = function () {
-        $(this).toggleClass('bg-success');
-    };
+const $Highlight = function () {
+    $(this).toggleClass('bg-success');
+};
 
-    $tableRow.on({
-        mouseenter: $Highlight,
-        mouseleave: $Highlight
-        });
+$tableRow.on({
+    mouseenter: $Highlight,
+    mouseleave: $Highlight
+});
 
-
-    const $userForm = $(`
+const $userForm = $(`
         <form class="col-sm-12 col-md-5 pl-5 pr-5 pt-2 pb-3">
         <div class="form-group">
             <label for="form-first-name">Imię</label>
@@ -92,40 +89,38 @@
         <button id="add-user-btn" class="btn btn-primary" disabled>Dodaj</button>
         </form>`);
 
-    $userForm.prependTo('body');
-    const $formFirstName = $('#form-first-name');
-    const $formLastName = $('#form-last-name');
-    const $formAge = $('#form-age');
-    const $formCity = $('#form-city');
-    const $addUserBtn = $('#add-user-btn');
-    const $formCheckBox = $('#form-check-box')
+$userForm.prependTo('body');
+const $formFirstName = $('#form-first-name');
+const $formLastName = $('#form-last-name');
+const $formAge = $('#form-age');
+const $formCity = $('#form-city');
+const $addUserBtn = $('#add-user-btn');
+const $formCheckBox = $('#form-check-box');
 
-    function getNewUser() {
-        event.preventDefault();
-        users.push({firstName: $formFirstName.val(), lastName: $formLastName.val(), age: $formAge.val(), city: $formCity.val(), id: users.length + 1})
-        $table.html(getRowsWithUsers());
+function getNewUser() {
+    event.preventDefault();
+    users.push({
+        firstName: $formFirstName.val(),
+        lastName: $formLastName.val(),
+        age: $formAge.val(),
+        city: $formCity.val(),
+        id: users.length + 1
+    });
+    $table.html(getRowsWithUsers());
 
-    }
+}
 
-
-
-
-    const $enableAddUserBtn = function () {
-        console.log('test1');
-        const $minAge = 18;
-        const $nameMinLength = 3;
-        const $formNameVal = $formFirstName.val();
-        if($formAge.val() > $minAge && $formNameVal.length > $nameMinLength){
+const $enableAddUserBtn = function () {
+    console.log('test1');
+    const $minAge = 18;
+    const $nameMinLength = 3;
+    const $formNameVal = $formFirstName.val();
+    if ($formAge.val() > $minAge && $formNameVal.length > $nameMinLength) {
         $addUserBtn.prop('disabled', false);
-    }}
+    }
+};
 
-    $formCheckBox.on('click', $enableAddUserBtn);
-
-
-    $addUserBtn.on('click', getNewUser);
-
-// przycisk do dodania użytkownika ma być odblokowany jeśli wiek age > 18 a firstName ma więcej niż 3 litery
+$formCheckBox.on('click', $enableAddUserBtn);
 
 
-
-// });
+$addUserBtn.on('click', getNewUser);
