@@ -97,7 +97,7 @@ const $formCity = $('#form-city');
 const $addUserBtn = $('#add-user-btn');
 const $formCheckBox = $('#form-check-box');
 
-function getNewUser() {
+function getNewUser(event) {
     event.preventDefault();
     users.push({
         firstName: $formFirstName.val(),
@@ -107,11 +107,9 @@ function getNewUser() {
         id: users.length + 1
     });
     $table.html(getRowsWithUsers());
-
 }
 
 const $enableAddUserBtn = function () {
-    console.log('test1');
     const $minAge = 18;
     const $nameMinLength = 3;
     const $formNameVal = $formFirstName.val();
@@ -120,7 +118,13 @@ const $enableAddUserBtn = function () {
     }
 };
 
+const $checkCheckBox = function () {
+    if ($(this).prop('checked')) {
+        $addUserBtn.prop('disabled', false);
+    }else{$addUserBtn.prop('disabled', true);}
+}
+
+$formCheckBox.on('change', $checkCheckBox);
 $formCheckBox.on('click', $enableAddUserBtn);
-
-
 $addUserBtn.on('click', getNewUser);
+
