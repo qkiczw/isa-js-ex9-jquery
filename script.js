@@ -86,10 +86,10 @@
             </select>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="check-age">
+            <input class="form-check-input" type="checkbox" value="" id="form-check-box">
             <label class="form-check-label" for="check-age">Mam 18 lat.</label>
         </div>
-        <button id="add-user-btn" class="btn btn-primary">Dodaj</button>
+        <button id="add-user-btn" class="btn btn-primary" disabled>Dodaj</button>
         </form>`);
 
     $userForm.prependTo('body');
@@ -98,6 +98,7 @@
     const $formAge = $('#form-age');
     const $formCity = $('#form-city');
     const $addUserBtn = $('#add-user-btn');
+    const $formCheckBox = $('#form-check-box')
 
     function getNewUser() {
         event.preventDefault();
@@ -107,6 +108,24 @@
     }
 
 
+
+
+    const $enableAddUserBtn = function () {
+        console.log('test1');
+        const $minAge = 18;
+        const $nameMinLength = 3;
+        const $formNameVal = $formFirstName.val();
+        if($formAge.val() > $minAge && $formNameVal.length > $nameMinLength){
+        $addUserBtn.prop('disabled', false);
+    }}
+
+    $formCheckBox.on('click', $enableAddUserBtn);
+
+
     $addUserBtn.on('click', getNewUser);
 
- // });
+// przycisk do dodania użytkownika ma być odblokowany jeśli wiek age > 18 a firstName ma więcej niż 3 litery
+
+
+
+// });
