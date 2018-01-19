@@ -17,7 +17,7 @@ const getRowsWithUsers = () => {
             <td>${user.lastName}</td>
             <td>${user.age}</td>
             <td>${user.city}</td>
-            <td class="remove-icon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></button></td>
+            <td><button type="button" class="btn btn-danger btn-xs remove-icon"><i class="fa fa-trash-o"></button></td>
         </tr>
         `)
     })
@@ -41,22 +41,18 @@ const getUserId = function () {
 
 $checkBox.on('change', getUserId);
 
-const $removeIcon = $('.remove-icon');
-
 const $removeUser = function () {
-    $(this).parent().remove();
+    $(this).closest('tr').remove();
 };
 
-$removeIcon.on('click', $removeUser);
+$(document).on('click','.remove-icon', $removeUser);
 
 const $Highlight = function () {
     $(this).toggleClass('bg-success');
 };
 
-$tableRow.on({
-    mouseenter: $Highlight,
-    mouseleave: $Highlight
-});
+$(document).on('mouseenter', 'tr', $Highlight);
+$(document).on('mouseleave', 'tr', $Highlight);
 
 const $userForm = $(`
         <form class="col-sm-12 col-md-5 pl-5 pr-5 pt-2 pb-3">
@@ -97,7 +93,7 @@ const $formCity = $('#form-city');
 const $addUserBtn = $('#add-user-btn');
 const $formCheckBox = $('#form-check-box');
 
-function getNewUser(event) {
+function getNewUser() {
     event.preventDefault();
     users.push({
         firstName: $formFirstName.val(),
@@ -127,4 +123,3 @@ const $checkCheckBox = function () {
 $formCheckBox.on('change', $checkCheckBox);
 $formCheckBox.on('click', $enableAddUserBtn);
 $addUserBtn.on('click', getNewUser);
-
