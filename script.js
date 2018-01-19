@@ -39,7 +39,8 @@ const getUserId = function () {
     }
 };
 
-$checkBox.on('change', getUserId);
+$(document).on('change', '.check-box', getUserId);
+// $checkBox.on('change', getUserId);
 
 const $removeUser = function () {
     $(this).closest('tr').remove();
