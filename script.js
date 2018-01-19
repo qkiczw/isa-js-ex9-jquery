@@ -66,7 +66,7 @@ const $userForm = $(`
         </div>
         <div class="form-group">
             <label for="form-age">Wiek</label>
-            <input type="text" class="form-control" id="form-age" placeholder="Wpisz wiek">
+            <input type="number" class="form-control" id="form-age" placeholder="Wpisz wiek">
         </div>
         <div class="form-group">
             <label for="form-city">Miasto</label>
